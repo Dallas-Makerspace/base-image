@@ -41,5 +41,5 @@ rel_id=`echo ${res} | jq -r '.id'`
 curl -X POST \
 	--user "$GH_USER:$GH_SECRET" \
  	--header 'Content-Type: text/javascript ' \
-	--upload-file "${ASSETS_PATH}/${ASSETS_RELEASE}"
+	--upload-file "${ASSETS_PATH}/${ASSETS_RELEASE}" \
 	https://${GH_HOST}/${GH_ENDPOINT}/${rel_id}/assets?name=${ASSETS_RELEASE}
