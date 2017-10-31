@@ -14,4 +14,5 @@ RELEASE_URL=$(jq -r '.assets[].browser_download_url' <<< ${RELEASE_JSON} )
 RELEASE_VERSION=$(jq -r '.name' <<< ${RELEASE_JSON} )
 
 echo "Importing ${GH_REPO} ${RELEASE_VERSION}"
-curl -sSLk ${RELEASE_URL} > release
+docker import ${RELEASE_URL} ${GH_REPO}:${RELEASE_VERSION}
+docker tag ${GH_REPO}:${RELEASE_VERSION} ${GH_REPO}:latest
