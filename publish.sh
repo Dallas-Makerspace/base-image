@@ -9,12 +9,12 @@ GH_TARGET=${GH_TARGET:-"master"}
 GH_HOST=${GH_HOST:-"uploads.github.com"}
 GH_ENDPOINT="repos/${GH_USER}/${GH_REPO}/releases"
 USE_TLS=${USE_TLS:-`true`}
+VERSION=$(date "+%s")
 ASSETS_PATH=build
 ASSETS_EXT=tgz
 ASSETS_RELEASE=${GH_REPO}.${VERSION}.${ASSETS_EXT}
 
 [ -d $ASSETS_PATH ] || mkdir $ASSETS_PATH
-VERSION=$(date "+%s")
 
 docker save alpine:latest | gzip > $ASSETS_PATH/${ASSETS_RELEASE}
 
