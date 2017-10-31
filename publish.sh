@@ -10,7 +10,7 @@ GH_HOST=${GH_HOST:-"uploads.github.com"}
 GH_ENDPOINT="repos/${GH_USER}/${GH_REPO}/releases"
 USE_TLS=${USE_TLS:-`true`}
 VERSION=$(date "+%s")
-ASSETS_PATH=build
+ASSETS_PATH=./build
 ASSETS_EXT=tgz
 ASSETS_RELEASE=${GH_REPO}.${VERSION}.${ASSETS_EXT}
 
@@ -41,5 +41,5 @@ rel_id=`echo ${res} | jq -r '.id'`
 curl -X POST \
 	--user "$GH_USER:$GH_SECRET" \
  	--header 'Content-Type: text/javascript ' \
-	--upload-file ${ASSETS_PATH}/${ASSETS_RELEASE}
+	--upload-file "${ASSETS_PATH}/${ASSETS_RELEASE}"
 	https://${GH_HOST}/${GH_ENDPOINT}/${rel_id}/assets?name=${ASSETS_RELEASE}
